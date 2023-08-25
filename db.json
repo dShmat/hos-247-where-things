@@ -1,0 +1,22 @@
+{
+  "things": [
+    {
+      "nestedTo": null,
+      "name": "iPhone 12",
+      "description": "My phone",
+      "volume": 10,
+      "id": 1
+    }
+  ],
+  "containers": [
+    {
+      "nestedTo": null,
+      "nestedElements": [],
+      "emptyVolume": 12,
+      "name": "Box1",
+      "description": "Simple box",
+      "volume": 12,
+      "id": 1
+    }
+  ]
+}

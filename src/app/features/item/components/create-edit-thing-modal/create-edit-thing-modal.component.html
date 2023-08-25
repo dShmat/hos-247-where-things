@@ -1,0 +1,25 @@
+<div class="modal-header">
+  {{header}}
+</div>
+<div class="modal-body">
+  <form [formGroup]="thingForm">
+    <div class="mb-2">
+      <label>Name:</label>
+      <input type="text" class="form-control" formControlName="name">
+      <span class="error-span" *ngIf="nameInvalid">Field is required</span>
+    </div>
+    <div class="mb-2">
+      <label>Description:</label>
+      <input type="text" class="form-control" formControlName="description">
+      <span class="error-span" *ngIf="descriptionInvalid">Field is required</span>
+    </div>
+    <div class="mb-2">
+      <label>Volume (cm):</label>
+      <input type="number" class="form-control" formControlName="volume">
+      <span class="error-span" *ngIf="volumeInvalid">Field is required and must be more than 0</span>
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-primary" (click)="saveThing()">Save</button>
+</div>

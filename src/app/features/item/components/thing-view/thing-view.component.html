@@ -1,0 +1,21 @@
+<ng-container *ngIf="thing">
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title">{{thing.name}}</h5>
+      <h6 class="card-subtitle mb-2 text-muted">{{thing.description}}</h6>
+      <p class="card-text">Volume: {{thing.volume}} cm</p>
+    </div>
+    <div class="card-footer d-flex justify-content-between">
+      <div>
+        <button type="button" class="btn btn-primary" (click)="putTo()" *ngIf="!isNested">Put To</button>
+        <button type="button" class="btn btn-primary" (click)="removeFromContainer()" *ngIf="isNested">
+          Remove From
+        </button>
+      </div>
+      <div>
+        <button type="button" class="btn btn-primary me-2" (click)="updateThing()">Update</button>
+        <button type="button" class="btn btn-danger" (click)="deleteThing()">Delete</button>
+      </div>
+    </div>
+  </div>
+</ng-container>

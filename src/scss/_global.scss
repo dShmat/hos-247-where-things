@@ -1,0 +1,23 @@
+.error-span {
+  color: red;
+  font-size: 12px;
+}
+
+.card {
+  height: 15em;
+
+  h6 {
+    height: 5em;
+    overflow: auto;
+  }
+}
+
+.item-container {
+  border: 1px solid lightgray;
+  border-radius: 10px;
+
+  .item-list {
+    height: 90%;
+    overflow: auto;
+  }
+}

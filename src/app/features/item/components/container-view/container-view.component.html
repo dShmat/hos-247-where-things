@@ -1,0 +1,13 @@
+<ng-container *ngIf="container">
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title">{{container.name}}</h5>
+      <h6 class="card-subtitle mb-2 text-muted">{{container.description}}</h6>
+      <p class="card-text">Volume: {{container.volume}} cm</p>
+    </div>
+    <div class="card-footer text-end">
+      <button type="button" class="btn btn-primary me-2" (click)="updateContainer()">Update</button>
+      <button type="button" class="btn btn-danger" (click)="deleteContainer()">Delete</button>
+    </div>
+  </div>
+</ng-container>
