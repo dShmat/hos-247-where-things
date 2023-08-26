@@ -1,10 +1,9 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {BsModalRef, BsModalService} from "ngx-bootstrap/modal";
 import {BehaviorSubject, filter} from "rxjs";
 import {DataService} from "../../services/data.service";
 import {ContainerInterface} from "../../models/container-interface";
 import {CreateEditContainerModalComponent} from "../create-edit-container-modal/create-edit-container-modal.component";
-import {ThingInterface} from "../../models/thing-interface";
 import {PutActionModalComponent} from "../put-action-modal/put-action-modal.component";
 import {PutItemInterface} from "../../models/put-item-interface";
 
@@ -13,7 +12,7 @@ import {PutItemInterface} from "../../models/put-item-interface";
   templateUrl: './containers.component.html',
   styleUrls: ['./containers.component.scss']
 })
-export class ContainersComponent implements OnInit {
+export class ContainersComponent {
   bsModalRef?: BsModalRef;
   containers$: BehaviorSubject<ContainerInterface[]> = this.dataService.containers$;
 
@@ -21,10 +20,6 @@ export class ContainersComponent implements OnInit {
     private modalService: BsModalService,
     private dataService: DataService,
   ) {
-  }
-
-  ngOnInit() {
-    this.dataService.getContainers();
   }
 
   openDialog(editableContainer?: ContainerInterface): void {

@@ -1,5 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {ContainerInterface} from "../../models/container-interface";
+import {DataService} from "../../services/data.service";
 
 @Component({
   selector: 'app-container-view',
@@ -14,10 +15,23 @@ export class ContainerViewComponent implements OnInit {
   @Output() deleteEmitted: EventEmitter<number> = new EventEmitter<number>();
 
   isNested: boolean = false;
+  parentName: string = '-';
+
+  constructor(private dataService: DataService) {
+  }
 
   ngOnInit(): void {
     if (this.container) {
       this.isNested = !!this.container.nestedTo;
+      if (this.isNested) {
+        this.dataService.containers$
+          .subscribe(
+            containers => {
+              this.parentName = containers.find(container =>
+                container.id === this.container?.nestedTo)?.name || 'Not found';
+            }
+          )
+      }
     }
   }
 

@@ -12,6 +12,7 @@ export class ThingService {
   private readonly thingsUrl: string = 'http://localhost:3004/things'
 
   constructor(private http: HttpClient) {
+
   }
 
   getThings(): Observable<ThingInterface[]> {

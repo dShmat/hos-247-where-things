@@ -18,6 +18,8 @@ export class DataService {
     private thingService: ThingService,
     private containerService: ContainerService
   ) {
+    this.getThings();
+    this.getContainers();
   }
 
   getThings(): void {

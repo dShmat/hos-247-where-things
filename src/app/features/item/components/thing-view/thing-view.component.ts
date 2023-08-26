@@ -1,5 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {ThingInterface} from '../../models/thing-interface';
+import {DataService} from "../../services/data.service";
+import {filter} from "rxjs";
 
 @Component({
   selector: 'app-thing-view',
@@ -14,10 +16,23 @@ export class ThingViewComponent implements OnInit {
   @Output() deleteEmitted: EventEmitter<number> = new EventEmitter<number>();
 
   isNested: boolean = false;
+  parentName: string = '-';
+
+  constructor(private dataService: DataService) {
+  }
 
   ngOnInit(): void {
     if (this.thing) {
       this.isNested = !!this.thing.nestedTo;
+      if (this.isNested) {
+        this.dataService.containers$
+          .subscribe(
+            containers => {
+              this.parentName = containers.find(container =>
+                container.id === this.thing?.nestedTo)?.name || 'Not found';
+            }
+          )
+      }
     }
   }
 

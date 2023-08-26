@@ -4,12 +4,13 @@
       <h5 class="card-title">{{thing.name}}</h5>
       <h6 class="card-subtitle mb-2 text-muted">{{thing.description}}</h6>
       <p class="card-text">Volume: {{thing.volume}} cm</p>
+      <p class="card-text">Nested to: {{parentName}} </p>
     </div>
     <div class="card-footer d-flex justify-content-between">
       <div>
         <button type="button" class="btn btn-primary" (click)="putTo()" *ngIf="!isNested">Put To</button>
         <button type="button" class="btn btn-primary" (click)="removeFromContainer()" *ngIf="isNested">
-          Remove From
+          Remove
         </button>
       </div>
       <div>

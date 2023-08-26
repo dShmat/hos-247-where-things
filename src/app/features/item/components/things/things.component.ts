@@ -1,9 +1,8 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {CreateEditThingModalComponent} from '../create-edit-thing-modal/create-edit-thing-modal.component';
 import {BsModalRef, BsModalService} from 'ngx-bootstrap/modal';
 import {ThingInterface} from "../../models/thing-interface";
 import {BehaviorSubject, filter} from "rxjs";
-import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 import {DataService} from "../../services/data.service";
 import {PutActionModalComponent} from "../put-action-modal/put-action-modal.component";
 import {PutItemInterface} from "../../models/put-item-interface";
@@ -13,7 +12,7 @@ import {PutItemInterface} from "../../models/put-item-interface";
   templateUrl: './things.component.html',
   styleUrls: ['./things.component.scss']
 })
-export class ThingsComponent implements OnInit {
+export class ThingsComponent {
   bsModalRef?: BsModalRef;
   things$: BehaviorSubject<ThingInterface[]> = this.dataService.things$;
 
@@ -21,10 +20,6 @@ export class ThingsComponent implements OnInit {
     private modalService: BsModalService,
     private dataService: DataService,
   ) {
-  }
-
-  ngOnInit(): void {
-    this.dataService.getThings();
   }
 
   openEditDialog(editableThing?: ThingInterface): void {
