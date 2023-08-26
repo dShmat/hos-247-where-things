@@ -65,7 +65,7 @@ export class ContainersComponent implements OnInit {
   removeFromContainer(id: number): void {
     const editableContainer: ContainerInterface | undefined = this.containers$.value.find(thing => thing.id === id);
     if (editableContainer) {
-      this.dataService.removeFromContainer(editableContainer);
+      this.dataService.removeFromContainer(editableContainer, true);
     }
   }
 

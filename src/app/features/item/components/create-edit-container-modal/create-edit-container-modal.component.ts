@@ -54,13 +54,14 @@ export class CreateEditContainerModalComponent implements OnInit {
       return;
     }
     let emptyVolume = this.inputContainer?.emptyVolume
-    if (!this.inputContainer?.nestedElements) {
+    if (!this.inputContainer?.nestedItems && !this.inputContainer?.nestedContainers) {
       emptyVolume = +(this.containerForm?.get('volume')?.value as number)
     }
     const result = {
       id: this.inputContainer?.id,
       nestedTo: this.inputContainer?.nestedTo || null,
-      nestedElements: this.inputContainer?.nestedElements || [],
+      nestedItems: this.inputContainer?.nestedItems || [],
+      nestedContainers: this.inputContainer?.nestedContainers || [],
       emptyVolume: emptyVolume,
       ...this.containerForm?.value
     }

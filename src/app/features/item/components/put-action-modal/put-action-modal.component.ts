@@ -45,7 +45,7 @@ export class PutActionModalComponent implements OnInit {
       )
       if (this.isContainer) {
         this.availableContainers = this.availableContainers.filter((container: ContainerInterface) =>
-          container.id != this.item?.id && !container.nestedElements.includes(container.id)
+          container.id != this.item?.id && !container.nestedContainers.includes(container.id)
           && container.nestedTo != container.id
         )
       }

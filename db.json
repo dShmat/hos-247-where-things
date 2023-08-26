@@ -1,40 +1,54 @@
 {
   "things": [
     {
-      "nestedTo": null,
-      "name": "i1",
-      "description": " di1 di1 di1 di1 di1",
-      "volume": 10,
+      "nestedTo": 1,
+      "name": "iPhone 12",
+      "description": "My Phone",
+      "volume": 5,
       "id": 1
     },
     {
-      "id": 2,
       "nestedTo": null,
-      "name": "i2",
-      "description": "di2 di2 di2 di2 di2 di2 di2 di2 di2 di2 di2 di2",
-      "volume": 10
+      "name": "iPhone 13",
+      "description": "Wife's phone",
+      "volume": 5,
+      "id": 2
     }
   ],
   "containers": [
     {
-      "nestedTo": null,
-      "nestedElements": [
+      "nestedTo": 2,
+      "nestedItems": [
         1
       ],
-      "emptyVolume": 20,
-      "name": "c1",
-      "description": " dc1 dc1 dc1 dc1 dc1",
-      "volume": 30,
+      "nestedContainers": [],
+      "emptyVolume": 1,
+      "name": "iPhone Case",
+      "description": "Case for iPhone",
+      "volume": 6,
       "id": 1
     },
     {
       "nestedTo": null,
-      "nestedElements": [],
-      "emptyVolume": 50,
-      "name": "c2",
-      "description": " dc2 dc2 dc2 dc2 dc2 dc2",
-      "volume": 50,
+      "nestedItems": [],
+      "nestedContainers": [
+        1
+      ],
+      "emptyVolume": 14,
+      "name": "Device box",
+      "description": "Box for mobile devices",
+      "volume": 20,
       "id": 2
+    },
+    {
+      "nestedTo": null,
+      "nestedItems": [],
+      "nestedContainers": [],
+      "emptyVolume": 6,
+      "name": "iPhone Case 2",
+      "description": "Case for Iphone",
+      "volume": 6,
+      "id": 3
     }
   ]
 }

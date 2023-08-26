@@ -4,6 +4,7 @@ export interface ContainerInterface {
   description: string;
   volume: number;
   emptyVolume: number;
-  nestedElements: number[];
+  nestedItems: number[];
+  nestedContainers: number[];
   nestedTo: number | null;
 }

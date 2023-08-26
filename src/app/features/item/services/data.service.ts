@@ -69,9 +69,15 @@ export class DataService {
       this.things$.value.find(thing => thing.id === items.childId);
     if (parentContainer && child) {
       parentContainer.emptyVolume = parentContainer.emptyVolume - child.volume;
-      const nestedItems: number[] = parentContainer.nestedElements || [];
+      const nestedItems: number[] = isContainer ?
+        parentContainer.nestedContainers || [] :
+        parentContainer.nestedItems || [];
       nestedItems.unshift(items.childId);
-      parentContainer.nestedElements = nestedItems;
+      if (isContainer) {
+        parentContainer.nestedContainers = nestedItems;
+      } else {
+        parentContainer.nestedItems = nestedItems;
+      }
       this.putThingToContainer(items, parentContainer, isContainer);
     }
   }
@@ -99,7 +105,11 @@ export class DataService {
     const parentContainer =
       this.containers$.value.find(container => container.id === item.nestedTo);
     if (parentContainer && item.id != null) {
-      parentContainer.nestedElements.splice(parentContainer?.nestedElements.indexOf(item.id), 1);
+      if (isContainer) {
+        parentContainer.nestedContainers.splice(parentContainer?.nestedContainers.indexOf(item.id), 1);
+      } else {
+        parentContainer.nestedItems.splice(parentContainer?.nestedItems.indexOf(item.id), 1);
+      }
       parentContainer.emptyVolume = parentContainer.emptyVolume + item.volume;
       item.nestedTo = null;
       const updateChild = isContainer ?
