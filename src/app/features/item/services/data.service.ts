@@ -173,4 +173,21 @@ export class DataService {
       }
     })
   }
+
+  getContainerBusyPlace(id: number): number {
+    const containers = this.containers$.value;
+    const items = this.things$.value;
+    const container = containers.find(container => container.id === id);
+    let totalValue: number = 0;
+    if (container) {
+      container.nestedItems.forEach(item => {
+        totalValue += items.find(thing => thing.id === item)?.volume || 0;
+      });
+      container.nestedContainers.forEach(item => {
+        totalValue += containers.find(container => container.id === item)?.volume || 0;
+      });
+      return totalValue;
+    }
+    return 0;
+  }
 }

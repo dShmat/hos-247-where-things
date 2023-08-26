@@ -2,6 +2,7 @@ import {Component, EventEmitter, OnInit} from '@angular/core';
 import {FormBuilder, Validators} from "@angular/forms";
 import {BsModalRef} from "ngx-bootstrap/modal";
 import {ContainerInterface} from "../../models/container-interface";
+import {DataService} from "../../services/data.service";
 
 @Component({
   selector: 'app-create-edit-container-modal',
@@ -15,11 +16,12 @@ export class CreateEditContainerModalComponent implements OnInit {
   containerForm = this.formBuilder.group({
     name: ['', Validators.required],
     description: ['', Validators.required],
-    volume: [0, Validators.required],
+    volume: [0, [Validators.required, Validators.min(1), Validators.max(1000)]],
   })
 
   constructor(
     private formBuilder: FormBuilder,
+    private dataService: DataService,
     public modalRef: BsModalRef
   ) {
   }
@@ -42,6 +44,10 @@ export class CreateEditContainerModalComponent implements OnInit {
         this.containerForm.get('volume')?.touched)
   }
 
+  get volume() {
+    return this.containerForm.get('volume');
+  }
+
   ngOnInit() {
     if (this.inputContainer) {
       this.containerForm.patchValue(this.inputContainer);
@@ -56,6 +62,12 @@ export class CreateEditContainerModalComponent implements OnInit {
     let emptyVolume = this.inputContainer?.emptyVolume
     if (!this.inputContainer?.nestedItems && !this.inputContainer?.nestedContainers) {
       emptyVolume = +(this.containerForm?.get('volume')?.value as number)
+    } else if (this.inputContainer?.id) {
+      emptyVolume = (this.volume?.value || 0) - this.dataService.getContainerBusyPlace(this.inputContainer?.id);
+    }
+    if (emptyVolume && emptyVolume < 0) {
+      this.volume?.setErrors({'incorrect': true});
+      return;
     }
     const result = {
       id: this.inputContainer?.id,
@@ -67,6 +79,7 @@ export class CreateEditContainerModalComponent implements OnInit {
     }
     this.triggerEvent(result as ContainerInterface);
     this.modalRef.hide();
+
 
   }
 

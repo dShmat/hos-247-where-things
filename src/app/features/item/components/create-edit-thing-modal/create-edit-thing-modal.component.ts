@@ -15,7 +15,7 @@ export class CreateEditThingModalComponent implements OnInit {
   thingForm = this.formBuilder.group({
     name: ['', Validators.required],
     description: ['', Validators.required],
-    volume: [0, Validators.required],
+    volume: [0, [Validators.required, Validators.min(1), Validators.max(1000)]],
   })
 
   constructor(
