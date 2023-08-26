@@ -52,7 +52,7 @@ export class DataService {
     })
   }
 
-  deleteThing(id: string): void {
+  deleteThing(id: number): void {
     this.thingService.deleteThing(id).subscribe({
       next: () => {
         this.things$.next(this.things$.value.filter((obj) => obj.id !== id));
@@ -61,45 +61,60 @@ export class DataService {
   }
 
 
-  prepareDataToPutItem(items: PutItemInterface) {
+  prepareDataToPutItem(items: PutItemInterface, isContainer: boolean = false) {
     const parentContainer =
       this.containers$.value.find(container => container.id === items.parentId)
-    const child =
+    const child = isContainer ?
+      this.containers$.value.find(thing => thing.id === items.childId) :
       this.things$.value.find(thing => thing.id === items.childId);
     if (parentContainer && child) {
       parentContainer.emptyVolume = parentContainer.emptyVolume - child.volume;
-      const nestedItems: string[] = parentContainer.nestedElements || [];
+      const nestedItems: number[] = parentContainer.nestedElements || [];
       nestedItems.unshift(items.childId);
       parentContainer.nestedElements = nestedItems;
-      this.putThingToContainer(items, parentContainer);
+      this.putThingToContainer(items, parentContainer, isContainer);
     }
   }
 
-  putThingToContainer(items: PutItemInterface, parentContainer: ContainerInterface): void {
-    const updateChild: Observable<ThingInterface> = this.thingService.putThingToContainer(items);
+  putThingToContainer(items: PutItemInterface, parentContainer: ContainerInterface, isContainer: boolean = false): void {
+    const updateChild = isContainer ?
+      this.containerService.putContainerToContainer(items) :
+      this.thingService.putThingToContainer(items);
     const updateParent: Observable<ContainerInterface> = this.containerService.putItemToContainer(items, parentContainer);
     combineLatest([updateChild, updateParent])
       .subscribe(([updateChild, updateParent]) => {
-        this.things$.next(this.things$.value
-          .map((item) => (item.id === items.childId ? {...updateChild} : item)));
+        if (isContainer) {
+          this.containers$.next(this.containers$.value
+            .map((container) => (container.id === items.childId ? {...updateChild as ContainerInterface} : container)));
+        } else {
+          this.things$.next(this.things$.value
+            .map((item) => (item.id === items.childId ? {...updateChild} : item)));
+        }
         this.containers$.next(this.containers$.value
           .map((container) => (container.id === items.parentId ? {...updateParent} : container)));
       });
   }
 
-  removeFromContainer(item: ThingInterface) {
+  removeFromContainer(item: ThingInterface, isContainer: boolean = false) {
     const parentContainer =
       this.containers$.value.find(container => container.id === item.nestedTo);
     if (parentContainer && item.id != null) {
       parentContainer.nestedElements.splice(parentContainer?.nestedElements.indexOf(item.id), 1);
       parentContainer.emptyVolume = parentContainer.emptyVolume + item.volume;
       item.nestedTo = null;
-      const updateChild: Observable<ThingInterface> = this.thingService.removeThingFromContainer(item);
+      const updateChild = isContainer ?
+        this.containerService.removeContainerFromContainer(item) :
+        this.thingService.removeThingFromContainer(item);
       const updateParent: Observable<ContainerInterface> = this.containerService.updateContainer(parentContainer);
       combineLatest([updateChild, updateParent])
         .subscribe(([updateChild, updateParent]) => {
-            this.things$.next(this.things$.value
-              .map((thing) => (thing.id === item.id ? {...updateChild} : thing)));
+            if (isContainer) {
+              this.containers$.next(this.containers$.value
+                .map((container) => (container.id === item.id ? {...updateChild as ContainerInterface} : container)));
+            } else {
+              this.things$.next(this.things$.value
+                .map((thing) => (thing.id === item.id ? {...updateChild} : thing)));
+            }
             this.containers$.next(this.containers$.value
               .map((container) => (container.id === parentContainer.id ? {...updateParent} : container)));
           }
@@ -139,7 +154,7 @@ export class DataService {
     })
   }
 
-  deleteContainer(id: string): void {
+  deleteContainer(id: number): void {
     this.containerService.deleteContainer(id).subscribe({
       next: () => {
         this.containers$.next(this.containers$.value.filter((obj) => obj.id !== id));

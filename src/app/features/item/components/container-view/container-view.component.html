@@ -5,9 +5,17 @@
       <h6 class="card-subtitle mb-2 text-muted">{{container.description}}</h6>
       <p class="card-text">Volume: {{container.volume}} cm</p>
     </div>
-    <div class="card-footer text-end">
-      <button type="button" class="btn btn-primary me-2" (click)="updateContainer()">Update</button>
-      <button type="button" class="btn btn-danger" (click)="deleteContainer()">Delete</button>
+    <div class="card-footer d-flex justify-content-between">
+      <div>
+        <button type="button" class="btn btn-primary" (click)="putTo()" *ngIf="!isNested">Put To</button>
+        <button type="button" class="btn btn-primary" (click)="removeFromContainer()" *ngIf="isNested">
+          Remove From
+        </button>
+      </div>
+      <div>
+        <button type="button" class="btn btn-primary me-2" (click)="updateContainer()">Update</button>
+        <button type="button" class="btn btn-danger" (click)="deleteContainer()">Delete</button>
+      </div>
     </div>
   </div>
 </ng-container>

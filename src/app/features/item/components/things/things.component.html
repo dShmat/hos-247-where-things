@@ -1,12 +1,12 @@
 <div class="item-container h-100">
   <div class="row p-3 item-list">
     <ng-container *ngIf="things$">
-      <div *ngFor="let thing of things$ | async" class="col-md-6 mb-3">
+      <div *ngFor="let thing of things$ | async" class="col-lg-6 mb-3">
         <app-thing-view
           [thing]="thing"
           (updateEmitted)="updateThing($event)"
-          (putEmitted)="putThing($event)"
-          (removeEmitted)="removeThing($event)"
+          (putEmitted)="putToContainer($event)"
+          (removeEmitted)="removeFromContainer($event)"
           (deleteEmitted)="deleteThing($event)">
         </app-thing-view>
       </div>

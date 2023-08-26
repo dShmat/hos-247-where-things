@@ -17,17 +17,12 @@ export class PutActionModalComponent implements OnInit {
   header: string = 'Not set';
   availableContainers: ContainerInterface[] = [];
   item?: ThingInterface | ContainerInterface;
+  isContainer: boolean = false
   containers$: BehaviorSubject<ContainerInterface[]> = this.dataService.containers$;
 
   putItemForm = this.fb.group({
     parentId: ['', Validators.required]
   })
-
-  get containerInvalid() {
-    return this.putItemForm.get('parentId')?.errors &&
-      (this.putItemForm.get('parentId')?.dirty ||
-        this.putItemForm.get('parentId')?.touched)
-  }
 
   constructor(
     public modalRef: BsModalRef,
@@ -36,16 +31,28 @@ export class PutActionModalComponent implements OnInit {
   ) {
   }
 
+  get containerInvalid() {
+    return this.putItemForm.get('parentId')?.errors &&
+      (this.putItemForm.get('parentId')?.dirty ||
+        this.putItemForm.get('parentId')?.touched)
+  }
+
   ngOnInit(): void {
     if (this.item) {
       const volume = this.item.volume;
       this.availableContainers = this.containers$.value.filter((container: ContainerInterface) =>
         container.emptyVolume >= volume
       )
+      if (this.isContainer) {
+        this.availableContainers = this.availableContainers.filter((container: ContainerInterface) =>
+          container.id != this.item?.id && !container.nestedElements.includes(container.id)
+          && container.nestedTo != container.id
+        )
+      }
     }
   }
 
-  save(){
+  save() {
     if (!this.putItemForm.valid) {
       this.putItemForm.markAllAsTouched();
       return;

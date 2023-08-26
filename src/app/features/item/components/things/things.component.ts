@@ -46,21 +46,21 @@ export class ThingsComponent implements OnInit {
       )
   }
 
-  updateThing(id: string): void {
+  updateThing(id: number): void {
     const editableThing: ThingInterface | undefined = this.things$.value.find(thing => thing.id === id);
     if (editableThing) {
       this.openEditDialog(editableThing)
     }
   }
 
-  putThing(id: string): void {
+  putToContainer(id: number): void {
     const editableThing: ThingInterface | undefined = this.things$.value.find(thing => thing.id === id);
     if (editableThing) {
       this.openPutActionDialog(editableThing);
     }
   }
 
-  removeThing(id: string): void {
+  removeFromContainer(id: number): void {
     const editableThing: ThingInterface | undefined = this.things$.value.find(thing => thing.id === id);
     if (editableThing) {
       this.dataService.removeFromContainer(editableThing);
@@ -69,7 +69,7 @@ export class ThingsComponent implements OnInit {
 
   openPutActionDialog(thing: ThingInterface): void {
     const initialState = {
-      header: 'Put Thing',
+      header: 'Put Thing to Container',
       item: thing
     };
     this.bsModalRef = this.modalService.show(PutActionModalComponent, {initialState});
@@ -82,7 +82,7 @@ export class ThingsComponent implements OnInit {
       )
   }
 
-  deleteThing(thingId: string): void {
+  deleteThing(thingId: number): void {
     this.dataService.deleteThing(thingId);
   }
 

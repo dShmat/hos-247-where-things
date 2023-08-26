@@ -1,4 +1,4 @@
 export interface PutItemInterface {
-  childId: string;
-  parentId: string;
+  childId: number;
+  parentId: number;
 }

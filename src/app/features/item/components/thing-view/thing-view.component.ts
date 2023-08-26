@@ -6,34 +6,34 @@ import {ThingInterface} from '../../models/thing-interface';
   templateUrl: './thing-view.component.html',
   styleUrls: ['./thing-view.component.scss']
 })
-export class ThingViewComponent implements OnInit{
+export class ThingViewComponent implements OnInit {
   @Input() thing?: ThingInterface;
-  @Output() updateEmitted = new EventEmitter<string>();
-  @Output() putEmitted = new EventEmitter<string>();
-  @Output() removeEmitted = new EventEmitter<string>();
-  @Output() deleteEmitted = new EventEmitter<string>();
+  @Output() updateEmitted: EventEmitter<number> = new EventEmitter<number>();
+  @Output() putEmitted: EventEmitter<number> = new EventEmitter<number>();
+  @Output() removeEmitted: EventEmitter<number> = new EventEmitter<number>();
+  @Output() deleteEmitted: EventEmitter<number> = new EventEmitter<number>();
 
   isNested: boolean = false;
 
-  ngOnInit() {
+  ngOnInit(): void {
     if (this.thing) {
       this.isNested = !!this.thing.nestedTo;
     }
   }
 
-  updateThing() {
+  updateThing(): void {
     this.updateEmitted.emit(this.thing?.id);
   }
 
-  putTo() {
+  putTo(): void {
     this.putEmitted.emit(this.thing?.id);
   }
 
-  removeFromContainer() {
+  removeFromContainer(): void {
     this.removeEmitted.emit(this.thing?.id)
   }
 
-  deleteThing() {
+  deleteThing(): void {
     this.deleteEmitted.emit(this.thing?.id);
   }
 }

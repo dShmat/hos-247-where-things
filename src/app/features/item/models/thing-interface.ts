@@ -1,7 +1,7 @@
 export interface ThingInterface {
-  id?: string;
+  id: number;
   name: string;
   description: string;
   volume: number;
-  nestedTo?: string | null;
+  nestedTo: number | null;
 }
