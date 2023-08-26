@@ -1,11 +1,11 @@
 import {Component} from '@angular/core';
 import {CreateEditThingModalComponent} from '../create-edit-thing-modal/create-edit-thing-modal.component';
 import {BsModalRef, BsModalService} from 'ngx-bootstrap/modal';
-import {ThingInterface} from "../../models/thing-interface";
-import {BehaviorSubject, filter} from "rxjs";
-import {DataService} from "../../services/data.service";
-import {PutActionModalComponent} from "../put-action-modal/put-action-modal.component";
-import {PutItemInterface} from "../../models/put-item-interface";
+import {ThingInterface} from '../../models/thing-interface';
+import {BehaviorSubject, filter} from 'rxjs';
+import {DataService} from '../../services/data.service';
+import {PutActionModalComponent} from '../put-action-modal/put-action-modal.component';
+import {PutItemInterface} from '../../models/put-item-interface';
 
 @Component({
   selector: 'app-things',

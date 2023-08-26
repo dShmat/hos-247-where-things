@@ -1,11 +1,11 @@
 import {Component} from '@angular/core';
-import {BsModalRef, BsModalService} from "ngx-bootstrap/modal";
-import {BehaviorSubject, filter} from "rxjs";
-import {DataService} from "../../services/data.service";
-import {ContainerInterface} from "../../models/container-interface";
-import {CreateEditContainerModalComponent} from "../create-edit-container-modal/create-edit-container-modal.component";
-import {PutActionModalComponent} from "../put-action-modal/put-action-modal.component";
-import {PutItemInterface} from "../../models/put-item-interface";
+import {BsModalRef, BsModalService} from 'ngx-bootstrap/modal';
+import {BehaviorSubject, filter} from 'rxjs';
+import {DataService} from '../../services/data.service';
+import {ContainerInterface} from '../../models/container-interface';
+import {CreateEditContainerModalComponent} from '../create-edit-container-modal/create-edit-container-modal.component';
+import {PutActionModalComponent} from '../put-action-modal/put-action-modal.component';
+import {PutItemInterface} from '../../models/put-item-interface';
 
 @Component({
   selector: 'app-containers',

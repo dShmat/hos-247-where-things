@@ -1,8 +1,7 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { NavbarComponent } from './components/navbar/navbar.component';
-import {RouterLink} from "@angular/router";
-
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {NavbarComponent} from './components/navbar/navbar.component';
+import {RouterLink} from '@angular/router';
 
 
 @NgModule({
@@ -17,4 +16,5 @@ import {RouterLink} from "@angular/router";
     RouterLink
   ]
 })
-export class CoreModule { }
+export class CoreModule {
+}

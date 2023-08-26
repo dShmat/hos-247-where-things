@@ -1,11 +1,11 @@
 import {Component, EventEmitter, OnInit} from '@angular/core';
-import {PutItemInterface} from "../../models/put-item-interface";
-import {ContainerInterface} from "../../models/container-interface";
-import {ThingInterface} from "../../models/thing-interface";
-import {BsModalRef} from "ngx-bootstrap/modal";
-import {BehaviorSubject} from "rxjs";
-import {DataService} from "../../services/data.service";
-import {FormBuilder, Validators} from "@angular/forms";
+import {PutItemInterface} from '../../models/put-item-interface';
+import {ContainerInterface} from '../../models/container-interface';
+import {ThingInterface} from '../../models/thing-interface';
+import {BsModalRef} from 'ngx-bootstrap/modal';
+import {BehaviorSubject} from 'rxjs';
+import {DataService} from '../../services/data.service';
+import {FormBuilder, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-put-action-modal',

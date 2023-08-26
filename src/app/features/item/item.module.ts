@@ -9,8 +9,10 @@ import {ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {ContainersComponent} from './components/containers/containers.component';
 import {ContainerViewComponent} from './components/container-view/container-view.component';
-import {CreateEditContainerModalComponent} from './components/create-edit-container-modal/create-edit-container-modal.component';
-import { PutActionModalComponent } from './components/put-action-modal/put-action-modal.component';
+import {
+  CreateEditContainerModalComponent
+} from './components/create-edit-container-modal/create-edit-container-modal.component';
+import {PutActionModalComponent} from './components/put-action-modal/put-action-modal.component';
 
 
 @NgModule({

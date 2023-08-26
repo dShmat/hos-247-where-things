@@ -2,9 +2,9 @@ import {Injectable} from '@angular/core';
 import {ThingService} from './thing.service';
 import {BehaviorSubject, combineLatest, Observable} from 'rxjs';
 import {ThingInterface} from '../models/thing-interface';
-import {ContainerInterface} from "../models/container-interface";
-import {ContainerService} from "./container.service";
-import {PutItemInterface} from "../models/put-item-interface";
+import {ContainerInterface} from '../models/container-interface';
+import {ContainerService} from './container.service';
+import {PutItemInterface} from '../models/put-item-interface';
 
 @Injectable({
   providedIn: 'root'

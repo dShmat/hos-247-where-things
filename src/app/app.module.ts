@@ -8,7 +8,7 @@ import {CoreModule} from './core/core.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ModalModule} from 'ngx-bootstrap/modal';
 import {HTTP_INTERCEPTORS} from "@angular/common/http";
-import {HttpHeadersInterceptor} from "./core/interceptor/http-headers.interceptor";
+import {HttpHeadersInterceptor} from './core/interceptor/http-headers.interceptor';
 
 @NgModule({
   declarations: [

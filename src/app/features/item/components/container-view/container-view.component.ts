@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {ContainerInterface} from "../../models/container-interface";
-import {DataService} from "../../services/data.service";
+import {ContainerInterface} from '../../models/container-interface';
+import {DataService} from '../../services/data.service';
 
 @Component({
   selector: 'app-container-view',

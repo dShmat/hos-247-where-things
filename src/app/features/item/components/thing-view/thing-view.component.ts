@@ -1,7 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {ThingInterface} from '../../models/thing-interface';
-import {DataService} from "../../services/data.service";
-import {filter} from "rxjs";
+import {DataService} from '../../services/data.service';
 
 @Component({
   selector: 'app-thing-view',

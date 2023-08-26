@@ -1,8 +1,8 @@
 import {Component, EventEmitter, OnInit} from '@angular/core';
-import {FormBuilder, Validators} from "@angular/forms";
-import {BsModalRef} from "ngx-bootstrap/modal";
-import {ContainerInterface} from "../../models/container-interface";
-import {DataService} from "../../services/data.service";
+import {FormBuilder, Validators} from '@angular/forms';
+import {BsModalRef} from 'ngx-bootstrap/modal';
+import {ContainerInterface} from '../../models/container-interface';
+import {DataService} from '../../services/data.service';
 
 @Component({
   selector: 'app-create-edit-container-modal',

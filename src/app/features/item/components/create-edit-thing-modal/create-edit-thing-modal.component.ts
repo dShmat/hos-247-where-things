@@ -1,7 +1,7 @@
 import {Component, EventEmitter, OnInit} from '@angular/core';
 import {BsModalRef} from 'ngx-bootstrap/modal';
 import {FormBuilder, Validators} from '@angular/forms';
-import {ThingInterface} from "../../models/thing-interface";
+import {ThingInterface} from '../../models/thing-interface';
 
 @Component({
   selector: 'app-create-edit-thing-modal',
